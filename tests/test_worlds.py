@@ -75,3 +75,31 @@ def test_gradient_world_measures_the_distance_from_the_robots_under_the_red_ligh
     for name, report in reports.items():
         closest = min(math.dist((report.x, report.y), (source.x, source.y)) for source in sources)
         assert closest - PRINTED <= distances[name] < math.inf, name
+
+
+def any_within(reports: list[Report], point: tuple[float, float], radius: float) -> bool:
+    """Whether a robot is within ``radius`` of ``point``."""
+    return any(math.dist((report.x, report.y), point) <= radius for report in reports)
+
+
+def connected(reports: list[Report], reach: float) -> bool:
+    """Whether the robots form one network, with a link between those within ``reach``."""
+    unvisited, frontier = reports[1:], reports[:1]
+    while frontier:
+        robot = frontier.pop()
+        near = [other for other in unvisited if math.dist((robot.x, robot.y), (other.x, other.y)) <= reach]
+        unvisited = [other for other in unvisited if other not in near]
+        frontier.extend(near)
+    return not unvisited
+
+
+def test_channel_world_lights_a_path_of_robots_from_the_red_to_the_blue_light():
+    red_spot, blue_spot, spot, radio = (-0.40, -0.20), (0.40, 0.20), 0.09, 0.17  # as in worlds/channel.wbt
+
+    reports = run_world("channel", until=3.0)
+
+    inside = [report for report in reports.values() if report.result == "True"]
+    assert any_within(inside, red_spot, spot)
+    assert any_within(inside, blue_spot, spot)
+    assert len(inside) < ROBOTS / 2
+    assert connected(inside, radio)

@@ -1,0 +1,80 @@
+#VRML_SIM R2025a utf8
+# 32 Elisa-3 stand still; a red spot and a blue one shine on the robots at two corners, and the robots on a shortest path between the two light up.
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/SwarmElisa.proto"
+
+WorldInfo {
+  basicTimeStep 32
+}
+Viewpoint {
+  orientation -0.3574 0.3574 0.8629 1.7178
+  position 0.0 -0.75 0.75
+}
+Background {
+  skyColor [
+    0.15 0.15 0.18
+  ]
+}
+DirectionalLight {
+  direction 0.2 0.3 -1
+  intensity 0.8
+  castShadows FALSE
+}
+RectangleArena {
+  floorSize 1.0 0.6
+  floorTileSize 0.2 0.2
+  wallHeight 0.03
+}
+SpotLight {
+  location -0.4 -0.2 0.6
+  direction 0 0 -1
+  color 1 0 0
+  intensity 1
+  attenuation 0 0 1
+  beamWidth 0.1340
+  cutOffAngle 0.1489
+  castShadows FALSE
+}
+SpotLight {
+  location 0.4 0.2 0.6
+  direction 0 0 -1
+  color 0 0 1
+  intensity 1
+  attenuation 0 0 1
+  beamWidth 0.1340
+  cutOffAngle 0.1489
+  castShadows FALSE
+}
+SwarmElisa { translation -0.358 -0.149 0 rotation 0 0 1 0.000 name "elisa0" controllerArgs ["channel"] }
+SwarmElisa { translation -0.254 -0.147 0 rotation 0 0 1 0.000 name "elisa1" controllerArgs ["channel"] }
+SwarmElisa { translation -0.146 -0.163 0 rotation 0 0 1 0.000 name "elisa2" controllerArgs ["channel"] }
+SwarmElisa { translation -0.065 -0.140 0 rotation 0 0 1 0.000 name "elisa3" controllerArgs ["channel"] }
+SwarmElisa { translation 0.043 -0.158 0 rotation 0 0 1 0.000 name "elisa4" controllerArgs ["channel"] }
+SwarmElisa { translation 0.165 -0.151 0 rotation 0 0 1 0.000 name "elisa5" controllerArgs ["channel"] }
+SwarmElisa { translation 0.260 -0.151 0 rotation 0 0 1 0.000 name "elisa6" controllerArgs ["channel"] }
+SwarmElisa { translation 0.354 -0.160 0 rotation 0 0 1 0.000 name "elisa7" controllerArgs ["channel"] }
+SwarmElisa { translation -0.346 -0.039 0 rotation 0 0 1 0.000 name "elisa8" controllerArgs ["channel"] }
+SwarmElisa { translation -0.249 -0.043 0 rotation 0 0 1 0.000 name "elisa9" controllerArgs ["channel"] }
+SwarmElisa { translation -0.145 -0.063 0 rotation 0 0 1 0.000 name "elisa10" controllerArgs ["channel"] }
+SwarmElisa { translation -0.042 -0.047 0 rotation 0 0 1 0.000 name "elisa11" controllerArgs ["channel"] }
+SwarmElisa { translation 0.044 -0.064 0 rotation 0 0 1 0.000 name "elisa12" controllerArgs ["channel"] }
+SwarmElisa { translation 0.161 -0.051 0 rotation 0 0 1 0.000 name "elisa13" controllerArgs ["channel"] }
+SwarmElisa { translation 0.257 -0.039 0 rotation 0 0 1 0.000 name "elisa14" controllerArgs ["channel"] }
+SwarmElisa { translation 0.356 -0.037 0 rotation 0 0 1 0.000 name "elisa15" controllerArgs ["channel"] }
+SwarmElisa { translation -0.353 0.059 0 rotation 0 0 1 0.000 name "elisa16" controllerArgs ["channel"] }
+SwarmElisa { translation -0.252 0.063 0 rotation 0 0 1 0.000 name "elisa17" controllerArgs ["channel"] }
+SwarmElisa { translation -0.139 0.038 0 rotation 0 0 1 0.000 name "elisa18" controllerArgs ["channel"] }
+SwarmElisa { translation -0.061 0.042 0 rotation 0 0 1 0.000 name "elisa19" controllerArgs ["channel"] }
+SwarmElisa { translation 0.064 0.048 0 rotation 0 0 1 0.000 name "elisa20" controllerArgs ["channel"] }
+SwarmElisa { translation 0.154 0.044 0 rotation 0 0 1 0.000 name "elisa21" controllerArgs ["channel"] }
+SwarmElisa { translation 0.250 0.047 0 rotation 0 0 1 0.000 name "elisa22" controllerArgs ["channel"] }
+SwarmElisa { translation 0.346 0.053 0 rotation 0 0 1 0.000 name "elisa23" controllerArgs ["channel"] }
+SwarmElisa { translation -0.347 0.162 0 rotation 0 0 1 0.000 name "elisa24" controllerArgs ["channel"] }
+SwarmElisa { translation -0.245 0.163 0 rotation 0 0 1 0.000 name "elisa25" controllerArgs ["channel"] }
+SwarmElisa { translation -0.139 0.165 0 rotation 0 0 1 0.000 name "elisa26" controllerArgs ["channel"] }
+SwarmElisa { translation -0.045 0.140 0 rotation 0 0 1 0.000 name "elisa27" controllerArgs ["channel"] }
+SwarmElisa { translation 0.061 0.164 0 rotation 0 0 1 0.000 name "elisa28" controllerArgs ["channel"] }
+SwarmElisa { translation 0.162 0.152 0 rotation 0 0 1 0.000 name "elisa29" controllerArgs ["channel"] }
+SwarmElisa { translation 0.256 0.141 0 rotation 0 0 1 0.000 name "elisa30" controllerArgs ["channel"] }
+SwarmElisa { translation 0.360 0.152 0 rotation 0 0 1 0.000 name "elisa31" controllerArgs ["channel"] }

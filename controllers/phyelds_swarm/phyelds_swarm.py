@@ -16,10 +16,11 @@ from controller import Robot  # pylint: disable=import-error
 
 from phyelds.webots import AggregateController
 
+from phyelds_webots_examples.channel import channel
 from phyelds_webots_examples.gradient import gradient
 from phyelds_webots_examples.lights import blue_light, led, red_light
 
-PROGRAMS: dict[str, Callable[[], Any]] = {"gradient": gradient}
+PROGRAMS: dict[str, Callable[[], Any]] = {"gradient": gradient, "channel": channel}
 REPORT_PERIOD = 1.0  # seconds of simulated time between two reports
 
 

@@ -2,6 +2,8 @@ import math
 
 import pytest
 
+from phyelds.experimental.swarm import Vector
+
 from phyelds_webots_examples.drive import MAX_WHEEL_SPEED, WHEEL_RADIUS, wheel_speeds
 
 
@@ -40,3 +42,7 @@ def test_wheel_speeds_slow_both_wheels_down_to_the_top_speed_and_keep_turning():
 
     assert right == pytest.approx(MAX_WHEEL_SPEED)
     assert 0 < left < right
+
+
+def test_wheel_speeds_take_the_vector_a_program_sends():
+    assert wheel_speeds(Vector(0.0, 0.1), heading=math.pi / 2) == pytest.approx(wheel_speeds((0.0, 0.1), math.pi / 2))

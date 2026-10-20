@@ -1,6 +1,6 @@
 """How an Elisa-3 follows a velocity: it turns towards it and drives, as its wheels allow."""
 import math
-from collections.abc import Sequence
+from collections.abc import Iterable
 
 WHEEL_RADIUS = 0.0045
 """The radius of the wheels, in metres, as in the Elisa3 proto."""
@@ -15,7 +15,7 @@ TURN_GAIN = 4.0
 """How fast the robot turns, in rad/s, for each radian between its heading and the velocity."""
 
 
-def wheel_speeds(velocity: Sequence[float], heading: float) -> tuple[float, float]:
+def wheel_speeds(velocity: Iterable[float], heading: float) -> tuple[float, float]:
     """
     The speeds of the wheels that take the robot along ``velocity``.
 
@@ -30,10 +30,11 @@ def wheel_speeds(velocity: Sequence[float], heading: float) -> tuple[float, floa
     Returns:
         The speeds of the left and of the right wheel, in rad/s.
     """
-    speed = math.hypot(velocity[0], velocity[1])
+    x, y, *_ = velocity
+    speed = math.hypot(x, y)
     if speed == 0:
         return 0.0, 0.0
-    error = math.remainder(math.atan2(velocity[1], velocity[0]) - heading, math.tau)
+    error = math.remainder(math.atan2(y, x) - heading, math.tau)
     forward = speed * max(0.0, math.cos(error))
     turn = TURN_GAIN * error * AXLE / 2
     left, right = (forward - turn) / WHEEL_RADIUS, (forward + turn) / WHEEL_RADIUS

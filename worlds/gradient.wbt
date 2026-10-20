@@ -12,19 +12,25 @@ Viewpoint {
   position 0.0 -0.75 0.75
 }
 Background {
+  luminosity 0.1
   skyColor [
     0.15 0.15 0.18
   ]
 }
 DirectionalLight {
   direction 0.2 0.3 -1
-  intensity 0.8
+  intensity 0.4
   castShadows FALSE
 }
 RectangleArena {
   floorSize 1.0 0.6
   floorTileSize 0.2 0.2
   wallHeight 0.03
+  floorAppearance PBRAppearance {
+    baseColor 0.2 0.2 0.22
+    roughness 1
+    metalness 0
+  }
 }
 SpotLight {
   location -0.3 -0.1 0.6

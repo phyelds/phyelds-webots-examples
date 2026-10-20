@@ -12,19 +12,25 @@ Viewpoint {
   position 0.0 -2.0 2.0
 }
 Background {
+  luminosity 0.1
   skyColor [
     0.15 0.15 0.18
   ]
 }
 DirectionalLight {
   direction 0.2 0.3 -1
-  intensity 0.8
+  intensity 0.4
   castShadows FALSE
 }
 RectangleArena {
   floorSize 2.0 2.0
   floorTileSize 0.2 0.2
   wallHeight 0.03
+  floorAppearance PBRAppearance {
+    baseColor 0.2 0.2 0.22
+    roughness 1
+    metalness 0
+  }
 }
 SwarmElisa { translation -0.355 -0.860 0 rotation 0 0 1 -1.514 name "elisa0" controllerArgs ["formation"] }
 SwarmElisa { translation -0.245 -0.863 0 rotation 0 0 1 1.164 name "elisa1" controllerArgs ["formation"] }

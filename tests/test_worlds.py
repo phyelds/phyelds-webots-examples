@@ -47,7 +47,8 @@ def run_world(world: str, until: float) -> dict[str, Report]:
     lines: list[str] = []
     with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
                           env=environment) as webots:
-        timer = threading.Timer(TIMEOUT, webots.kill)
+        # webots is a script that runs webots-bin: on SIGTERM it stops it, on SIGKILL it would not.
+        timer = threading.Timer(TIMEOUT, webots.terminate)
         timer.start()
         try:
             for line in webots.stdout:
@@ -59,7 +60,8 @@ def run_world(world: str, until: float) -> dict[str, Report]:
                     break
         finally:
             timer.cancel()
-            webots.kill()
+            webots.terminate()
+            webots.wait()
     assert len(reports) == ROBOTS, "".join(lines[-50:])
     return reports
 

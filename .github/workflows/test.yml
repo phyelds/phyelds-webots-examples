@@ -1,0 +1,61 @@
+name: test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Configure Poetry to not create virtualenvs (CI-friendly)
+      run: poetry config virtualenvs.create false
+
+    - name: Install dependencies
+      run: poetry install
+
+    - name: Lint with pylint
+      run: poetry run pylint src controllers
+
+    - name: Lint with flake8
+      run: poetry run flake8
+
+    - name: Test with pytest
+      run: poetry run pytest -m "not webots"
+
+  webots:
+    runs-on: ubuntu-latest
+    # Webots and xvfb come with the image; its Python is too old for phyelds, so the
+    # controllers run on a Python 3.13 environment that the tests put first on the PATH.
+    container: cyberbotics/webots:R2025a-ubuntu22.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+
+    - name: Install the examples and the test dependencies
+      run: |
+        uv venv --python 3.13 .venv
+        uv pip install --python .venv/bin/python -e . phyelds-simulator pytest
+
+    - name: Run the worlds in Webots
+      run: |
+        command -v webots  # the world tests are skipped without it
+        xvfb-run -a .venv/bin/python -m pytest -m webots

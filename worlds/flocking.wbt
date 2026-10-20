@@ -1,0 +1,60 @@
+#VRML_SIM R2025a utf8
+# 32 Elisa-3 flock: each one steers as its neighbours do, and turns back near the walls; its colour is its heading.
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/SwarmElisa.proto"
+
+WorldInfo {
+  basicTimeStep 32
+}
+Viewpoint {
+  orientation -0.3574 0.3574 0.8629 1.7178
+  position 0.0 -1.5 1.5
+}
+Background {
+  skyColor [
+    0.15 0.15 0.18
+  ]
+}
+DirectionalLight {
+  direction 0.2 0.3 -1
+  intensity 0.8
+  castShadows FALSE
+}
+RectangleArena {
+  floorSize 1.5 1.5
+  floorTileSize 0.2 0.2
+  wallHeight 0.03
+}
+SwarmElisa { translation -0.346 -0.143 0 rotation 0 0 1 -0.299 name "elisa0" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.241 -0.137 0 rotation 0 0 1 0.376 name "elisa1" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.143 -0.137 0 rotation 0 0 1 2.665 name "elisa2" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.064 -0.151 0 rotation 0 0 1 -0.216 name "elisa3" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.063 -0.146 0 rotation 0 0 1 0.049 name "elisa4" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.162 -0.162 0 rotation 0 0 1 0.549 name "elisa5" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.249 -0.158 0 rotation 0 0 1 -1.981 name "elisa6" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.351 -0.148 0 rotation 0 0 1 0.075 name "elisa7" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.365 -0.058 0 rotation 0 0 1 0.816 name "elisa8" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.257 -0.038 0 rotation 0 0 1 1.841 name "elisa9" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.142 -0.060 0 rotation 0 0 1 -2.550 name "elisa10" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.041 -0.061 0 rotation 0 0 1 -1.235 name "elisa11" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.054 -0.061 0 rotation 0 0 1 -2.572 name "elisa12" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.135 -0.039 0 rotation 0 0 1 1.946 name "elisa13" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.241 -0.059 0 rotation 0 0 1 1.215 name "elisa14" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.364 -0.039 0 rotation 0 0 1 -2.878 name "elisa15" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.356 0.064 0 rotation 0 0 1 3.030 name "elisa16" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.249 0.055 0 rotation 0 0 1 2.920 name "elisa17" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.159 0.063 0 rotation 0 0 1 0.967 name "elisa18" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.044 0.064 0 rotation 0 0 1 0.726 name "elisa19" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.062 0.044 0 rotation 0 0 1 -2.152 name "elisa20" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.146 0.040 0 rotation 0 0 1 -3.047 name "elisa21" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.239 0.037 0 rotation 0 0 1 0.178 name "elisa22" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.344 0.053 0 rotation 0 0 1 -2.767 name "elisa23" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.365 0.155 0 rotation 0 0 1 -1.946 name "elisa24" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.255 0.144 0 rotation 0 0 1 -1.621 name "elisa25" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.140 0.149 0 rotation 0 0 1 -2.953 name "elisa26" controllerArgs ["flocking"] }
+SwarmElisa { translation -0.056 0.149 0 rotation 0 0 1 -0.227 name "elisa27" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.056 0.137 0 rotation 0 0 1 -0.374 name "elisa28" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.164 0.136 0 rotation 0 0 1 2.152 name "elisa29" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.257 0.160 0 rotation 0 0 1 0.120 name "elisa30" controllerArgs ["flocking"] }
+SwarmElisa { translation 0.336 0.159 0 rotation 0 0 1 0.881 name "elisa31" controllerArgs ["flocking"] }

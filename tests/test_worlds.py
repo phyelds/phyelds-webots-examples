@@ -34,18 +34,18 @@ class Report:
     result: str
 
 
-def run_world(world: str, until: float) -> dict[str, Report]:
+def run_world(world: str, until: float) -> dict[str, list[Report]]:
     """
     Run ``worlds/<world>.wbt`` in Webots until every robot reported at ``until`` seconds or later.
 
     Returns:
-        The last report of each robot, by name.
+        The reports of each robot, by name, from the first to the last.
     """
     # Webots runs the controllers with the python3 on the PATH: this one, with phyelds.
     environment = {**os.environ, "PATH": f"{Path(sys.executable).parent}{os.pathsep}{os.environ['PATH']}"}
     command = [WEBOTS, "--batch", "--mode=fast", "--no-rendering", "--minimize", "--stdout", "--stderr",
                str(WORLDS / f"{world}.wbt")]
-    reports: dict[str, Report] = {}
+    reports: dict[str, list[Report]] = {}
     lines: list[str] = []
     with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
                           env=environment, start_new_session=True) as webots:
@@ -63,8 +63,8 @@ def run_world(world: str, until: float) -> dict[str, Report]:
                 lines.append(line)
                 if line.startswith("phyelds "):
                     _, name, time, x, y, result = line.split()
-                    reports[name] = Report(float(time), float(x), float(y), result)
-                if len(reports) == ROBOTS and all(report.time >= until for report in reports.values()):
+                    reports.setdefault(name, []).append(Report(float(time), float(x), float(y), result))
+                if len(reports) == ROBOTS and all(history[-1].time >= until for history in reports.values()):
                     break
         finally:
             timer.cancel()
@@ -73,8 +73,13 @@ def run_world(world: str, until: float) -> dict[str, Report]:
     return reports
 
 
+def last(histories: dict[str, list[Report]]) -> dict[str, Report]:
+    """The last report of each robot, by name."""
+    return {name: history[-1] for name, history in histories.items()}
+
+
 def test_gradient_world_measures_the_distance_from_the_robots_under_the_red_light():
-    reports = run_world("gradient", until=10.0)
+    reports = last(run_world("gradient", until=10.0))
 
     distances = {name: float(report.result) for name, report in reports.items()}
     sources = [report for name, report in reports.items() if distances[name] == 0.0]
@@ -103,10 +108,34 @@ def connected(reports: list[Report], reach: float) -> bool:
 def test_channel_world_lights_a_path_of_robots_from_the_red_to_the_blue_light():
     red_spot, blue_spot, spot, radio = (-0.40, -0.20), (0.40, 0.20), 0.09, 0.17  # as in worlds/channel.wbt
 
-    reports = run_world("channel", until=10.0)
+    reports = last(run_world("channel", until=10.0))
 
     inside = [report for report in reports.values() if report.result == "True"]
     assert any_within(inside, red_spot, spot)
     assert any_within(inside, blue_spot, spot)
     assert len(inside) < ROBOTS / 2
     assert connected(inside, radio)
+
+
+def test_flocking_world_moves_the_swarm_as_one_without_leaving_the_arena():
+    half_arena, radio = 0.75, 0.17  # as in worlds/flocking.wbt
+
+    histories = run_world("flocking", until=40.0)
+
+    reports = list(last(histories).values())
+    travelled = [
+        sum(math.dist((a.x, a.y), (b.x, b.y)) for a, b in zip(history, history[1:]))
+        for history in histories.values()
+    ]
+    assert min(travelled) > 1.0
+    assert all(abs(report.x) < half_arena and abs(report.y) < half_arena for report in reports)
+    agreement = [polarisation([float(history[second].result) for history in histories.values()])
+                 for second in range(20, 40)]
+    assert sum(agreement) / len(agreement) > 0.8
+    assert all(any_within([other for other in reports if other is not report], (report.x, report.y), radio)
+               for report in reports)
+
+
+def polarisation(headings: list[float]) -> float:
+    """How much the headings agree: 1 when all are the same, about 0 when they are scattered."""
+    return math.hypot(sum(map(math.cos, headings)), sum(map(math.sin, headings))) / len(headings)

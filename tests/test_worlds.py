@@ -19,6 +19,7 @@ WORLDS = Path(__file__).resolve().parent.parent / "worlds"
 TIMEOUT = 300  # seconds of real time: a world that takes longer is stuck
 ROBOTS = 32
 PRINTED = 1e-3  # metres: the robots print their positions rounded
+TIPPED = 0.5  # radians: a robot leaning this much is no longer on its wheels
 
 pytestmark = [
     pytest.mark.webots,
@@ -28,11 +29,12 @@ pytestmark = [
 
 @dataclass(frozen=True)
 class Report:
-    """What a robot printed: where it was and what it computed, at a time of the simulation."""
+    """What a robot printed at a time of the simulation: where it was, its tilt, what it computed."""
 
     time: float
     x: float
     y: float
+    tilt: float
     result: str
 
 
@@ -64,8 +66,9 @@ def run_world(world: str, until: float) -> dict[str, list[Report]]:
             for line in webots.stdout:
                 lines.append(line)
                 if line.startswith("phyelds "):
-                    _, name, time, x, y, result = line.split()
-                    reports.setdefault(name, []).append(Report(float(time), float(x), float(y), result))
+                    _, name, time, x, y, tilt, result = line.split()
+                    report = Report(float(time), float(x), float(y), float(tilt), result)
+                    reports.setdefault(name, []).append(report)
                 if len(reports) == ROBOTS and all(history[-1].time >= until for history in reports.values()):
                     break
         finally:
@@ -73,6 +76,11 @@ def run_world(world: str, until: float) -> dict[str, list[Report]]:
             stop()
     assert len(reports) == ROBOTS, "".join(lines[-50:])
     return reports
+
+
+def upright(histories: dict[str, list[Report]]) -> bool:
+    """Whether every robot stayed on its wheels all along."""
+    return all(report.tilt < TIPPED for history in histories.values() for report in history)
 
 
 def last(histories: dict[str, list[Report]]) -> dict[str, Report]:
@@ -124,6 +132,8 @@ def test_flocking_world_moves_the_swarm_as_one_without_leaving_the_arena():
 
     histories = run_world("flocking", until=40.0)
 
+    assert upright(histories)
+
     reports = list(last(histories).values())
     travelled = [
         sum(math.dist((a.x, a.y), (b.x, b.y)) for a, b in zip(history, history[1:]))
@@ -146,7 +156,9 @@ def polarisation(headings: list[float]) -> float:
 def test_formation_world_gathers_most_robots_inside_the_star():
     star = SHAPES[0][1]
 
-    reports = last(run_world("formation", until=50.0)).values()
+    histories = run_world("formation", until=50.0)
 
+    assert upright(histories)
+    reports = last(histories).values()
     inside = [report for report in reports if star((report.x, report.y)) <= 0]
     assert len(inside) >= 0.75 * ROBOTS

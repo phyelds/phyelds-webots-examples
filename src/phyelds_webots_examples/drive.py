@@ -8,8 +8,9 @@ WHEEL_RADIUS = 0.0045
 AXLE = 0.04
 """The distance between the wheels, in metres."""
 
-MAX_WHEEL_SPEED = 133.33
-"""The top speed of the wheels, in rad/s."""
+MAX_WHEEL_SPEED = 25.0
+"""The top speed of the wheels, in rad/s, about 11 cm/s: the motors reach 133, but an Elisa-3
+that starts or bumps into another that fast tips over."""
 
 TURN_GAIN = 4.0
 """How fast the robot turns, in rad/s, for each radian between its heading and the velocity."""

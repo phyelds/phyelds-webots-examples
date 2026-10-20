@@ -3,8 +3,8 @@ The controller of every robot: it runs the aggregate program its argument names,
 
 The program senses where the robot is on the floor and the light that falls on it from above;
 it sets the colour of the LED on top of the robot, and the velocity the wheels follow. Once a
-second of simulated time the robot prints what it computed, for the tests:
-``phyelds <name> <time> <x> <y> <result>``.
+second of simulated time the robot prints where it is, how much it tilts and what it computed,
+for the tests: ``phyelds <name> <time> <x> <y> <tilt> <result>``.
 
 Webots runs it with the ``python3`` on the PATH, which needs phyelds: open the worlds with
 ``poetry run webots worlds/<example>.wbt``.
@@ -66,6 +66,11 @@ class Body:
         x, y, _ = self.gps.getValues()
         return x, y
 
+    def tilt(self) -> float:
+        """How far the robot leans from upright, in radians: about 0 on its wheels."""
+        roll, pitch, _ = self.imu.getRollPitchYaw()
+        return max(abs(roll), abs(pitch))
+
     def sense(self) -> dict[str, Any]:
         """The sensors of the program: the position, and the light from above."""
         lights = {name: light.getValue() for name, light in self.lights.items()}
@@ -94,8 +99,8 @@ def main() -> None:
         body.act(aggregate_controller.outputs)
         if robot.getTime() >= next_report:
             x, y = body.position()
-            report = f"{robot.getName()} {robot.getTime():.3f} {x:.4f} {y:.4f} {result}"
-            print("phyelds", report, flush=True)
+            where = f"{x:.4f} {y:.4f} {body.tilt():.3f}"
+            print("phyelds", robot.getName(), f"{robot.getTime():.3f}", where, result, flush=True)
             next_report += REPORT_PERIOD
 
 

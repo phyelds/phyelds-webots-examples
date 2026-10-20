@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "phyelds-webots-examples"
+version = "0.1.0"
+description = "A swarm of Elisa-3 robots in Webots, coordinated by phyelds aggregate programs"
+license = "Apache-2.0"
+authors = [
+  "Gianluca Aguzzi <gianluca.aguzzi@unibo.it>"
+]
+readme = "README.md"
+
+packages = [
+    { include = "phyelds_webots_examples", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.14"
+phyelds-webots = "^8.7.0"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.2.0"
+pytest = "^9.0.3"
+pylint = "^3.0.0"
+flake8 = "^7.0.0"
+# The programs are tested on the simulator too, quicker than in Webots.
+phyelds-simulator = "^8.7.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["webots: runs a world in Webots (skipped when webots is not on the PATH)"]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

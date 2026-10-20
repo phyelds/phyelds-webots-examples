@@ -1,5 +1,5 @@
 #VRML_SIM R2025a utf8
-# 32 Elisa-3 take one shape after another, a star, a ring, then two crossed strokes; a robot is green inside the shape and orange outside.
+# 32 Elisa-3 spread evenly over a star; a robot is green inside the star and orange outside.
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
 EXTERNPROTO "../protos/SwarmElisa.proto"

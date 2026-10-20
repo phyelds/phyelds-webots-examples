@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from phyelds_webots_examples.formation import SHAPES
+from phyelds_webots_examples.formation import STAR
 
 WEBOTS = shutil.which("webots")
 WORLDS = Path(__file__).resolve().parent.parent / "worlds"
@@ -154,11 +154,9 @@ def polarisation(headings: list[float]) -> float:
 
 
 def test_formation_world_gathers_most_robots_inside_the_star():
-    star = SHAPES[0][1]
-
     histories = run_world("formation", until=50.0)
 
     assert upright(histories)
     reports = last(histories).values()
-    inside = [report for report in reports if star((report.x, report.y)) <= 0]
+    inside = [report for report in reports if STAR((report.x, report.y)) <= 0]
     assert len(inside) >= 0.75 * ROBOTS

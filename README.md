@@ -15,7 +15,7 @@ every robot runs the same aggregate program, and talks only to the robots its ra
 | [`gradient`](worlds/gradient.wbt) | The robots stand still; a red spot shines on four of them, and every robot shows how far it is from them, from red to blue | [`gradient.py`](src/phyelds_webots_examples/gradient.py) | `distance_to`, `neighbors_distances` |
 | [`channel`](worlds/channel.wbt) | A red and a blue spot shine on two corners: the robots on a shortest path between them light up yellow | [`channel.py`](src/phyelds_webots_examples/channel.py) | `channel` |
 | [`flocking`](worlds/flocking.wbt) | The boids of Reynolds: the swarm moves as one and turns back at the walls; the colour of a robot is its heading | [`flocking.py`](src/phyelds_webots_examples/flocking.py) | `separation`, `alignment`, `cohesion` |
-| [`formation`](worlds/formation.wbt) | The swarm takes a star, a ring, then a cross, a minute each; a robot is green inside the shape | [`formation.py`](src/phyelds_webots_examples/formation.py) | `formation`, `star`, `circle`, `segment` |
+| [`formation`](worlds/formation.wbt) | The swarm spreads evenly over a star, the tips last, in a few minutes; a robot is green inside the star | [`formation.py`](src/phyelds_webots_examples/formation.py) | `formation`, `star` |
 
 The gradient is a whole program, run by every robot:
 

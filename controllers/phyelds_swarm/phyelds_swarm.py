@@ -24,6 +24,7 @@ from phyelds.webots import AggregateController
 from phyelds_webots_examples.channel import channel
 from phyelds_webots_examples.drive import wheel_speeds
 from phyelds_webots_examples.flocking import flocking
+from phyelds_webots_examples.formation import formation
 from phyelds_webots_examples.gradient import gradient
 from phyelds_webots_examples.lights import blue_light, led, red_light
 
@@ -31,6 +32,7 @@ PROGRAMS: dict[str, Callable[[], Any]] = {
     "gradient": gradient,
     "channel": channel,
     "flocking": flocking,
+    "formation": formation,
 }
 STEPS_PER_ROUND = 4  # 128 ms between rounds: enough to steer, and the simulation runs far faster
 REPORT_PERIOD = 1.0  # seconds of simulated time between two reports

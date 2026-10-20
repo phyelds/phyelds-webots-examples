@@ -12,6 +12,8 @@ from pathlib import Path
 
 import pytest
 
+from phyelds_webots_examples.formation import SHAPES
+
 WEBOTS = shutil.which("webots")
 WORLDS = Path(__file__).resolve().parent.parent / "worlds"
 TIMEOUT = 300  # seconds of real time: a world that takes longer is stuck
@@ -139,3 +141,12 @@ def test_flocking_world_moves_the_swarm_as_one_without_leaving_the_arena():
 def polarisation(headings: list[float]) -> float:
     """How much the headings agree: 1 when all are the same, about 0 when they are scattered."""
     return math.hypot(sum(map(math.cos, headings)), sum(map(math.sin, headings))) / len(headings)
+
+
+def test_formation_world_gathers_most_robots_inside_the_star():
+    star = SHAPES[0][1]
+
+    reports = last(run_world("formation", until=50.0)).values()
+
+    inside = [report for report in reports if star((report.x, report.y)) <= 0]
+    assert len(inside) >= 0.75 * ROBOTS

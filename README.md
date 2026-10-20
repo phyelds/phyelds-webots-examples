@@ -4,6 +4,10 @@ A swarm of 32 [Elisa-3](https://www.gctronic.com/doc/index.php/Elisa-3) robots i
 [Webots](https://cyberbotics.com), coordinated by [phyelds](https://github.com/phyelds/phyelds):
 every robot runs the same aggregate program, and talks only to the robots its radio reaches.
 
+| Gradient | Channel | Flocking |
+|:---:|:---:|:---:|
+| ![The robots under a red spot are red; the farther a robot is, the closer to blue it turns](assets/gradient.jpg) | ![A yellow path of robots joins a red robot, in a red spot, to a blue one, in a blue spot](assets/channel.jpg) | ![The swarm moves as one block of robots, all of the same colour, the colour of their heading](assets/flocking.jpg) |
+
 | World | What it shows | Program | Building blocks |
 |---|---|---|---|
 | [`gradient`](worlds/gradient.wbt) | The robots stand still; a red spot shines on four of them, and every robot shows how far it is from them, from red to blue | [`gradient.py`](src/phyelds_webots_examples/gradient.py) | `distance_to`, `neighbors_distances` |

@@ -1,7 +1,9 @@
 """The examples in Webots: each world runs headless, and the robots report what they computed."""
+import contextlib
 import math
 import os
 import shutil
+import signal
 import subprocess
 import sys
 import threading
@@ -46,9 +48,15 @@ def run_world(world: str, until: float) -> dict[str, Report]:
     reports: dict[str, Report] = {}
     lines: list[str] = []
     with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
-                          env=environment) as webots:
-        # webots is a script that runs webots-bin: on SIGTERM it stops it, on SIGKILL it would not.
-        timer = threading.Timer(TIMEOUT, webots.terminate)
+                          env=environment, start_new_session=True) as webots:
+
+        def stop() -> None:
+            # The launcher, webots-bin and the controllers share a new session: kill them all, even
+            # a webots-bin stuck writing to this pipe, which would ignore a polite SIGTERM.
+            with contextlib.suppress(ProcessLookupError):
+                os.killpg(webots.pid, signal.SIGKILL)
+
+        timer = threading.Timer(TIMEOUT, stop)
         timer.start()
         try:
             for line in webots.stdout:
@@ -60,8 +68,7 @@ def run_world(world: str, until: float) -> dict[str, Report]:
                     break
         finally:
             timer.cancel()
-            webots.terminate()
-            webots.wait()
+            stop()
     assert len(reports) == ROBOTS, "".join(lines[-50:])
     return reports
 

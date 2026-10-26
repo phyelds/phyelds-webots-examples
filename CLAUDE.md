@@ -1,17 +1,18 @@
 # CLAUDE.md
 
 Examples of [phyelds](https://github.com/phyelds/phyelds) on a swarm of Elisa-3 robots
-in Webots R2025a. Every robot runs the same aggregate program through
-`phyelds.webots.AggregateController`.
+in Webots R2025a, and on a mixed swarm of Elisa-3, Khepera IV and Thymio II. Every robot
+runs the same aggregate program through `phyelds.webots.AggregateController`.
 
 - `src/phyelds_webots_examples/`: the aggregate programs, one module per example
   (`gradient`, `channel`, `flocking`, `formation`), and what the robots need to run them
   (`lights`: the colours of the LED and the light sensors). `phyelds.webots.Body` drives
   the LED and the wheels.
-- `controllers/phyelds_swarm/`: the one controller of every robot; its argument names the
-  program.
-- `protos/SwarmElisa.proto`: an Elisa-3 with a radio of limited range, a GPS, an inertial
-  unit and two light sensors looking up.
+- `controllers/phyelds_swarm/`: the one controller of every robot; its first argument names
+  the program, the others the wheels of robots other than the Elisa-3.
+- `protos/SwarmDevices.proto`: a radio of limited range, a GPS, an inertial unit and two
+  light sensors looking up; `SwarmElisa`, `SwarmKhepera` and `SwarmThymio` give them to an
+  Elisa-3, a Khepera IV and a Thymio II.
 - `worlds/`: one world per example.
 - `tests/`: they mirror `src/`. `tests/test_worlds.py` runs the worlds in Webots, and is
   skipped when `webots` is not on the PATH.

@@ -1,0 +1,47 @@
+#VRML_SIM R2025a utf8
+# The devices a robot of the examples of phyelds needs, for its extension slot: a radio that
+# reaches only the robots nearby, a GPS, an inertial unit, and two light sensors looking up,
+# one for red light and one for blue.
+
+PROTO SwarmDevices [
+  field SFFloat radioRange 0.17  # How far, in metres, the radio reaches.
+]
+{
+  Pose {
+    children [
+      Emitter {
+        name "radio_tx"
+        range IS radioRange
+        channel 2
+      }
+      Receiver {
+        name "radio_rx"
+        channel 2
+      }
+      GPS {
+      }
+      InertialUnit {
+      }
+      LightSensor {
+        translation 0 0 0.03
+        rotation 0 1 0 -1.5708
+        name "red light"
+        colorFilter 1 0 0
+        lookupTable [
+          0 0 0
+          1000 1000 0
+        ]
+      }
+      LightSensor {
+        translation 0 0 0.03
+        rotation 0 1 0 -1.5708
+        name "blue light"
+        colorFilter 0 0 1
+        lookupTable [
+          0 0 0
+          1000 1000 0
+        ]
+      }
+    ]
+  }
+}

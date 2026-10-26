@@ -1,9 +1,10 @@
 #VRML_SIM R2025a utf8
 # An Elisa-3 for the examples of phyelds, run by the controller phyelds_swarm. Its own radio
-# reaches the whole arena, so it gets one that reaches only the robots nearby; then a GPS, an
-# inertial unit, and two light sensors looking up, one for red light and one for blue.
+# reaches the whole arena, so it gets the devices of SwarmDevices: a radio that reaches only the
+# robots nearby, a GPS, an inertial unit, and two light sensors looking up.
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/gctronic/elisa/protos/Elisa3.proto"
+EXTERNPROTO "SwarmDevices.proto"
 
 PROTO SwarmElisa [
   field SFVec3f    translation    0 0 0
@@ -20,38 +21,8 @@ PROTO SwarmElisa [
     controller "phyelds_swarm"
     controllerArgs IS controllerArgs
     extensionSlot [
-      Emitter {
-        name "radio_tx"
-        range IS radioRange
-        channel 2
-      }
-      Receiver {
-        name "radio_rx"
-        channel 2
-      }
-      GPS {
-      }
-      InertialUnit {
-      }
-      LightSensor {
-        translation 0 0 0.03
-        rotation 0 1 0 -1.5708
-        name "red light"
-        colorFilter 1 0 0
-        lookupTable [
-          0 0 0
-          1000 1000 0
-        ]
-      }
-      LightSensor {
-        translation 0 0 0.03
-        rotation 0 1 0 -1.5708
-        name "blue light"
-        colorFilter 0 0 1
-        lookupTable [
-          0 0 0
-          1000 1000 0
-        ]
+      SwarmDevices {
+        radioRange IS radioRange
       }
     ]
   }

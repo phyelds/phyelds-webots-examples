@@ -56,10 +56,8 @@ with phyelds first. The first time, Webots downloads the Elisa-3 and the arena f
   runs the program its argument names through `phyelds.webots.AggregateController`, a round
   every 128 ms.
   - It senses the position and the light from above.
-  - It sets the LED to the colour the program sends to `led`.
-  - It drives the wheels along the velocity the program sends to `velocity`.
-    [`drive.wheel_speeds`](src/phyelds_webots_examples/drive.py) turns that velocity into
-    speeds for the two wheels.
+  - `phyelds.webots.Body` sets the LED to the colour the program sends to `led`, and drives
+    the wheels along the velocity it sends to `velocity`, at most 10 cm/s.
 - **The programs** know nothing of Webots, so they also run, and are tested, on
   [phyelds-simulator](https://pypi.org/project/phyelds-simulator/).
 
@@ -69,8 +67,9 @@ change.
 ## Add an example
 
 1. Write the program in `src/phyelds_webots_examples/<name>.py`: an `@aggregate` function
-   that sends a colour to `led` and, to move, a velocity in m/s to `velocity`. What it
-   returns is what the robot reports.
+   that sends a colour to `led` (red, green and blue in 0–255) and, to move, a velocity in
+   m/s to `velocity`, both from `phyelds.libraries.device`. What it returns is what the
+   robot reports.
 2. Add it to `PROGRAMS` in the controller.
 3. Copy a world to `worlds/<name>.wbt`, with `controllerArgs ["<name>"]` on every robot.
 4. Test it on the simulator (`tests/test_<name>.py`) and in its world (`tests/test_worlds.py`).

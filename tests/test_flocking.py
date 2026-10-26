@@ -3,10 +3,10 @@ import random
 
 import pytest
 
-from phyelds.libraries.device import velocity
+from phyelds.libraries.device import led, velocity
 
 from phyelds_webots_examples.flocking import SPEED, flocking
-from phyelds_webots_examples.lights import hue, led
+from phyelds_webots_examples.lights import hue
 from tests.simulation import grid, outputs, results, run
 
 

@@ -9,9 +9,9 @@ reach into the tips.
 """
 from phyelds.calculus import aggregate
 from phyelds.experimental import formation as sdf
-from phyelds.libraries.device import local_position, velocity
+from phyelds.libraries.device import led, local_position, velocity
 
-from phyelds_webots_examples.lights import hue, led
+from phyelds_webots_examples.lights import hue
 
 RADIO = 0.17
 """How far the radio of the robots reaches, in metres, as in SwarmElisa."""

@@ -6,7 +6,8 @@ in Webots R2025a. Every robot runs the same aggregate program through
 
 - `src/phyelds_webots_examples/`: the aggregate programs, one module per example
   (`gradient`, `channel`, `flocking`, `formation`), and what the robots need to run them
-  (`lights`: the LED and the light sensors, `drive`: wheels from a velocity).
+  (`lights`: the colours of the LED and the light sensors). `phyelds.webots.Body` drives
+  the LED and the wheels.
 - `controllers/phyelds_swarm/`: the one controller of every robot; its argument names the
   program.
 - `protos/SwarmElisa.proto`: an Elisa-3 with a radio of limited range, a GPS, an inertial
@@ -30,7 +31,7 @@ poetry install                     # set up the environment
 poetry run webots worlds/gradient.wbt   # open an example: Webots runs the controllers on the venv's python3
 poetry run pytest -m "not webots"  # the fast tests, as the pre-commit hook
 poetry run pytest -m webots        # the worlds, in Webots (batch mode, no rendering)
-poetry run pytest tests/test_drive.py::test_name   # a single test
+poetry run pytest tests/test_lights.py::test_name   # a single test
 poetry run pylint src controllers  # lint, as in CI
 poetry run flake8                  # style, max line length 120, as in CI
 ```

@@ -6,4 +6,4 @@ def test_hue_goes_round_the_colour_wheel_from_red():
 
     colours = [hue(turn) for turn in turns]
 
-    assert colours == [0xFF0000, 0x00FF00, 0x0000FF, 0xFF0000]
+    assert colours == [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 0, 0)]

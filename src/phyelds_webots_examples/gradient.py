@@ -6,10 +6,11 @@ neighbours are, and the distance spreads from robot to robot. The LED goes from 
 under the light, to blue, far from it.
 """
 from phyelds.calculus import aggregate
+from phyelds.libraries.device import led
 from phyelds.libraries.distances import neighbors_distances
 from phyelds.libraries.spreading import distance_to
 
-from phyelds_webots_examples.lights import hue, is_lit, led, red_light
+from phyelds_webots_examples.lights import hue, is_lit, red_light
 
 FAR = 0.8
 """The distance, in metres, from which a robot is as blue as it gets."""

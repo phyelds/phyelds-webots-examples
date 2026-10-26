@@ -1,5 +1,6 @@
+from phyelds.libraries.device import led
+
 from phyelds_webots_examples.formation import INSIDE, OUTSIDE, STAR, formation
-from phyelds_webots_examples.lights import led
 from tests.simulation import grid, outputs, positions, results, run
 
 ROUND = 0.128  # seconds between two rounds, as in Webots

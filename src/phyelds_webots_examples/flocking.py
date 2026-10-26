@@ -18,9 +18,9 @@ from phyelds.experimental.swarm import (
     cohesion,
     separation,
 )
-from phyelds.libraries.device import local_position, velocity
+from phyelds.libraries.device import led, local_position, velocity
 
-from phyelds_webots_examples.lights import hue, led
+from phyelds_webots_examples.lights import hue
 
 HALF_ARENA = 0.75
 """Half the side of the square arena, in metres: its walls are this far from the centre."""

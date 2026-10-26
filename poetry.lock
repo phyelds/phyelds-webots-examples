@@ -779,14 +779,14 @@ xml = ["lxml (>=4.9.2)"]
 
 [[package]]
 name = "phyelds"
-version = "8.8.0"
+version = "8.12.0"
 description = "A lightweight Python library to support aggregate computing!"
 optional = false
 python-versions = "<3.14,>=3.12"
 groups = ["main", "dev"]
 files = [
-    {file = "phyelds-8.8.0-py3-none-any.whl", hash = "sha256:0ada3e16ac9fce035cfab1a865b61e7ead409feaadf7759b233b54991030d8e3"},
-    {file = "phyelds-8.8.0.tar.gz", hash = "sha256:67e24bce9a39ab6b5a52ba705f293b8708154dc2c82838ff6ce2737561c3ebeb"},
+    {file = "phyelds-8.12.0-py3-none-any.whl", hash = "sha256:96a55023ef1815e31b94b727ae9e8a9b51f61a71ca6a0244cde774f34907e774"},
+    {file = "phyelds-8.12.0.tar.gz", hash = "sha256:c904aa6885dc9fa0e6fffb19431d3f5f51a376f76270dd3afa6c2d63763e6fca"},
 ]
 
 [package.dependencies]
@@ -794,14 +794,14 @@ wrapt = ">=1.17.2,<1.18.0"
 
 [[package]]
 name = "phyelds-simulator"
-version = "8.8.0"
+version = "8.12.0"
 description = "A discrete-event simulator, with live rendering, for phyelds programs"
 optional = false
 python-versions = "<3.14,>=3.12"
 groups = ["dev"]
 files = [
-    {file = "phyelds_simulator-8.8.0-py3-none-any.whl", hash = "sha256:6214e720b0146b27303f79bd4ce1b5061cd82f9233aa9790fb5513cf62bc7bef"},
-    {file = "phyelds_simulator-8.8.0.tar.gz", hash = "sha256:b356ecc175b5554ac154692c80cb3f3d2dafb2d61fb45c5f83796dc6d92bb97c"},
+    {file = "phyelds_simulator-8.12.0-py3-none-any.whl", hash = "sha256:1ee161474134fe5e1a67b39b95a1bc049f18473a67d5e42a9a54d543cce17472"},
+    {file = "phyelds_simulator-8.12.0.tar.gz", hash = "sha256:f9b4dd2ac285db49a9c601a4b42bb3f2b26130bed2f0b566e4ea7f7ec5a3d3a2"},
 ]
 
 [package.dependencies]
@@ -815,18 +815,18 @@ jupyter = ["ipython (>=8.10.0)"]
 
 [[package]]
 name = "phyelds-webots"
-version = "8.8.0"
+version = "8.12.0"
 description = "Webots integration for phyelds: aggregate programs on the robots of a Webots simulation"
 optional = false
 python-versions = "<3.14,>=3.12"
 groups = ["main"]
 files = [
-    {file = "phyelds_webots-8.8.0-py3-none-any.whl", hash = "sha256:8288c3a25236d8a93910b4dd50727b71220f3e5bd8995012c048bd51f47b0105"},
-    {file = "phyelds_webots-8.8.0.tar.gz", hash = "sha256:01a8c0ff8eff47ebec66f16ef85938a2cc06421af2b66c96159f9bea4ec720fc"},
+    {file = "phyelds_webots-8.12.0-py3-none-any.whl", hash = "sha256:68d37a87d8818ffd003352bb4c6c29f38fba2fae4d24c2e7f2772448edf2955f"},
+    {file = "phyelds_webots-8.12.0.tar.gz", hash = "sha256:1a0ea449dafba0b5908514526eb4fdc70ab95c7972b318f08c0038b2ba233c9a"},
 ]
 
 [package.dependencies]
-phyelds = ">=8.8.0,<9.0.0"
+phyelds = ">=8.12.0,<9.0.0"
 
 [[package]]
 name = "pillow"
@@ -1530,4 +1530,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<3.14"
-content-hash = "5b14d2bf980bc93e4a970f4ed702e95ec1772d4e50d1103e45d5db54027593f8"
+content-hash = "13749e1dd2f5b330a056b3cabebaa07f1b1e14dc6f0db3e04f6ee3f080171c4e"

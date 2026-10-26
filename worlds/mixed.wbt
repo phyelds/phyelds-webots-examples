@@ -1,0 +1,80 @@
+#VRML_SIM R2025a utf8
+# 32 robots of three kinds stand still: Elisa-3, Khepera IV and Thymio II, 20 cm apart. A red spot
+# lights a few of them, and each robot shows how far it is from them: the program of the
+# gradient, unchanged.
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/SwarmElisa.proto"
+EXTERNPROTO "../protos/SwarmKhepera.proto"
+EXTERNPROTO "../protos/SwarmThymio.proto"
+
+WorldInfo {
+  basicTimeStep 32
+}
+Viewpoint {
+  orientation -0.3574 0.3574 0.8629 1.7178
+  position 0.0 -1.6 1.6
+}
+Background {
+  luminosity 0.1
+  skyColor [
+    0.15 0.15 0.18
+  ]
+}
+DirectionalLight {
+  direction 0.2 0.3 -1
+  intensity 0.4
+  castShadows FALSE
+}
+RectangleArena {
+  floorSize 1.8 1.0
+  floorTileSize 0.2 0.2
+  wallHeight 0.03
+  floorAppearance PBRAppearance {
+    baseColor 0.2 0.2 0.22
+    roughness 1
+    metalness 0
+  }
+}
+SpotLight {
+  location -0.6 -0.2 0.6
+  direction 0 0 -1
+  color 1 0 0
+  intensity 1
+  attenuation 0 0 1
+  beamWidth 0.28
+  cutOffAngle 0.3
+  castShadows FALSE
+}
+SwarmElisa { translation -0.705 -0.310 0 name "elisa0" radioRange 0.3 }
+SwarmKhepera { translation -0.495 -0.313 0 name "khepera0" radioRange 0.3 }
+SwarmThymio { translation -0.299 -0.304 0 name "thymio0" radioRange 0.3 }
+SwarmElisa { translation -0.113 -0.300 0 name "elisa1" radioRange 0.3 }
+SwarmKhepera { translation 0.086 -0.302 0 name "khepera1" radioRange 0.3 }
+SwarmThymio { translation 0.287 -0.312 0 name "thymio1" radioRange 0.3 }
+SwarmElisa { translation 0.498 -0.290 0 name "elisa2" radioRange 0.3 }
+SwarmKhepera { translation 0.689 -0.308 0 name "khepera2" radioRange 0.3 }
+SwarmKhepera { translation -0.696 -0.087 0 name "khepera3" radioRange 0.3 }
+SwarmThymio { translation -0.498 -0.103 0 name "thymio2" radioRange 0.3 }
+SwarmElisa { translation -0.286 -0.114 0 name "elisa3" radioRange 0.3 }
+SwarmKhepera { translation -0.089 -0.106 0 name "khepera4" radioRange 0.3 }
+SwarmThymio { translation 0.089 -0.111 0 name "thymio3" radioRange 0.3 }
+SwarmElisa { translation 0.294 -0.091 0 name "elisa4" radioRange 0.3 }
+SwarmKhepera { translation 0.490 -0.098 0 name "khepera5" radioRange 0.3 }
+SwarmThymio { translation 0.704 -0.104 0 name "thymio4" radioRange 0.3 }
+SwarmThymio { translation -0.699 0.087 0 name "thymio5" radioRange 0.3 }
+SwarmElisa { translation -0.513 0.091 0 name "elisa5" radioRange 0.3 }
+SwarmKhepera { translation -0.295 0.098 0 name "khepera6" radioRange 0.3 }
+SwarmThymio { translation -0.106 0.103 0 name "thymio6" radioRange 0.3 }
+SwarmElisa { translation 0.099 0.094 0 name "elisa6" radioRange 0.3 }
+SwarmKhepera { translation 0.309 0.106 0 name "khepera7" radioRange 0.3 }
+SwarmThymio { translation 0.492 0.102 0 name "thymio7" radioRange 0.3 }
+SwarmElisa { translation 0.701 0.111 0 name "elisa7" radioRange 0.3 }
+SwarmElisa { translation -0.693 0.294 0 name "elisa8" radioRange 0.3 }
+SwarmKhepera { translation -0.486 0.289 0 name "khepera8" radioRange 0.3 }
+SwarmThymio { translation -0.302 0.308 0 name "thymio8" radioRange 0.3 }
+SwarmElisa { translation -0.110 0.300 0 name "elisa9" radioRange 0.3 }
+SwarmKhepera { translation 0.086 0.305 0 name "khepera9" radioRange 0.3 }
+SwarmThymio { translation 0.308 0.302 0 name "thymio9" radioRange 0.3 }
+SwarmElisa { translation 0.511 0.294 0 name "elisa10" radioRange 0.3 }
+SwarmKhepera { translation 0.706 0.303 0 name "khepera10" radioRange 0.3 }

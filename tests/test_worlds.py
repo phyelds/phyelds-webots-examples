@@ -91,6 +91,18 @@ def last(histories: dict[str, list[Report]]) -> dict[str, Report]:
 def test_gradient_world_measures_the_distance_from_the_robots_under_the_red_light():
     reports = last(run_world("gradient", until=10.0))
 
+    assert_distances_from_the_lit_robots(reports)
+
+
+def test_mixed_world_measures_the_distance_from_the_red_light_on_every_kind_of_robot():
+    reports = last(run_world("mixed", until=10.0))
+
+    assert {name.rstrip("0123456789") for name in reports} == {"elisa", "khepera", "thymio"}
+    assert_distances_from_the_lit_robots(reports)
+
+
+def assert_distances_from_the_lit_robots(reports: dict[str, Report]) -> None:
+    """Some robots are lit, and every other one is at least as far from them as in a straight line."""
     distances = {name: float(report.result) for name, report in reports.items()}
     sources = [report for name, report in reports.items() if distances[name] == 0.0]
     assert sources

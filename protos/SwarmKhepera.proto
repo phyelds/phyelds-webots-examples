@@ -1,0 +1,28 @@
+#VRML_SIM R2025a utf8
+# A Khepera IV for the examples of phyelds, run by the controller phyelds_swarm, with the devices
+# of SwarmDevices on its turret. Its wheels are 21 mm in radius: its arguments say so.
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/k-team/khepera4/protos/Khepera4.proto"
+EXTERNPROTO "SwarmDevices.proto"
+
+PROTO SwarmKhepera [
+  field SFVec3f    translation    0 0 0
+  field SFRotation rotation       0 0 1 0
+  field SFString   name           "khepera"
+  field MFString   controllerArgs ["gradient", "--wheel-radius", "0.021"]  # The program, and the wheels.
+  field SFFloat    radioRange     0.17                                     # How far, in metres, the radio reaches.
+]
+{
+  Khepera4 {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    controller "phyelds_swarm"
+    controllerArgs IS controllerArgs
+    turretSlot [
+      SwarmDevices {
+        radioRange IS radioRange
+      }
+    ]
+  }
+}

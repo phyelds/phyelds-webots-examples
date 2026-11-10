@@ -779,65 +779,51 @@ xml = ["lxml (>=4.9.2)"]
 
 [[package]]
 name = "phyelds"
-version = "9.5.2"
+version = "10.0.0"
 description = "A lightweight Python library to support aggregate computing!"
 optional = false
-python-versions = ">=3.12,<3.15"
+python-versions = "<3.15,>=3.12"
 groups = ["main", "dev"]
-files = []
-develop = false
-
-[package.source]
-type = "git"
-url = "https://github.com/phyelds/phyelds.git"
-reference = "ba003715ff03b0b0034be480dc37e9660b304837"
-resolved_reference = "ba003715ff03b0b0034be480dc37e9660b304837"
+files = [
+    {file = "phyelds-10.0.0-py3-none-any.whl", hash = "sha256:fb62214942ed76429f550e5a9ed8a521d4de847f7ff2dc0cf8d0e2fadfec9fcb"},
+    {file = "phyelds-10.0.0.tar.gz", hash = "sha256:eee013ee56de0ae469131ef23bb0ce1dd5348f139a77dca162187f26011c5190"},
+]
 
 [[package]]
 name = "phyelds-simulator"
-version = "9.5.2"
+version = "10.0.0"
 description = "A discrete-event simulator, with live rendering, for phyelds programs"
 optional = false
-python-versions = ">=3.12,<3.15"
+python-versions = "<3.15,>=3.12"
 groups = ["dev"]
-files = []
-develop = false
+files = [
+    {file = "phyelds_simulator-10.0.0-py3-none-any.whl", hash = "sha256:c4f62fbcf333a8d431d350e81ec0fe7dcca34f9f9554d305a3cf78f6921ead5e"},
+    {file = "phyelds_simulator-10.0.0.tar.gz", hash = "sha256:8c99e8d34a0bcadfa0510c7af659e4378534da87f2868650571c4e55d84738d8"},
+]
 
 [package.dependencies]
 matplotlib = ">=3.10.1,<3.11.0"
-pandas = "^2.2.3"
-phyelds = "^9.5.2"
+pandas = ">=2.2.3,<3.0.0"
+phyelds = ">=10.0.0,<11.0.0"
 pydantic = "2.12.5"
 
 [package.extras]
 jupyter = ["ipython (>=8.10.0)"]
 
-[package.source]
-type = "git"
-url = "https://github.com/phyelds/phyelds.git"
-reference = "ba003715ff03b0b0034be480dc37e9660b304837"
-resolved_reference = "ba003715ff03b0b0034be480dc37e9660b304837"
-subdirectory = "packages/phyelds-simulator"
-
 [[package]]
 name = "phyelds-webots"
-version = "9.5.2"
+version = "10.0.0"
 description = "Webots integration for phyelds: aggregate programs on the robots of a Webots simulation"
 optional = false
-python-versions = ">=3.12,<3.15"
+python-versions = "<3.15,>=3.12"
 groups = ["main"]
-files = []
-develop = false
+files = [
+    {file = "phyelds_webots-10.0.0-py3-none-any.whl", hash = "sha256:a4fee85eca5bcbc56f2a3206d383e99fd496ee6d7e6a52fcdf4ec5571455359e"},
+    {file = "phyelds_webots-10.0.0.tar.gz", hash = "sha256:d8152450660bcc93cf8cb88e2da8c8894d67d55f1c289dd50e41a491acf27f6e"},
+]
 
 [package.dependencies]
-phyelds = "^9.5.2"
-
-[package.source]
-type = "git"
-url = "https://github.com/phyelds/phyelds.git"
-reference = "ba003715ff03b0b0034be480dc37e9660b304837"
-resolved_reference = "ba003715ff03b0b0034be480dc37e9660b304837"
-subdirectory = "packages/phyelds-webots"
+phyelds = ">=10.0.0,<11.0.0"
 
 [[package]]
 name = "pillow"
@@ -1450,4 +1436,4 @@ python-discovery = ">=1.6.1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<3.14"
-content-hash = "17ae870bd6001394842e8ec5ac03f8f7ce37f6a4ea221cc50aebd62bb64f0b9b"
+content-hash = "6ec42ad8baba7e9f388e3d1657a99496fb04cdfc66debe22133c5fe6573af02d"

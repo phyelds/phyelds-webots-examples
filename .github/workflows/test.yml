@@ -47,6 +47,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install Git for the pinned source dependencies
+      run: apt-get update && apt-get install -y --no-install-recommends git
+
     - name: Install uv
       uses: astral-sh/setup-uv@v6
 

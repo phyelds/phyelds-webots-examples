@@ -65,7 +65,7 @@ def steer(heading: Vector) -> Vector:
 @aggregate
 def flocking() -> float:
     """Fly with the flock: send the velocity of the robot, and return its heading, in radians."""
-    heading = remember_and_evolve(brownian(), lambda previous: steer(previous.value)).value
+    heading = remember_and_evolve(brownian(), steer)
     angle = math.atan2(heading.y, heading.x)
     velocity.send(heading * SPEED)
     led.send(hue(angle / math.tau))

@@ -14,7 +14,8 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.14"
-phyelds-webots = "^8.13.0"
+phyelds = { git = "https://github.com/phyelds/phyelds.git", rev = "ba003715ff03b0b0034be480dc37e9660b304837" }
+phyelds-webots = { git = "https://github.com/phyelds/phyelds.git", rev = "ba003715ff03b0b0034be480dc37e9660b304837", subdirectory = "packages/phyelds-webots" }
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.2.0"
@@ -22,7 +23,7 @@ pytest = "^9.0.3"
 pylint = "^3.0.0"
 flake8 = "^7.0.0"
 # The programs are tested on the simulator too, quicker than in Webots.
-phyelds-simulator = "^8.13.0"
+phyelds-simulator = { git = "https://github.com/phyelds/phyelds.git", rev = "ba003715ff03b0b0034be480dc37e9660b304837", subdirectory = "packages/phyelds-simulator" }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

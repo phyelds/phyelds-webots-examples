@@ -38,7 +38,11 @@ are, and the distance spreads from robot to robot.
 
 ## Run them
 
-You need Webots R2025a, Python 3.12 or 3.13 and [Poetry](https://python-poetry.org/):
+You need Webots R2025a, Python 3.12 or 3.13 and [Poetry](https://python-poetry.org/).
+The dependencies are pinned to [the state API update](https://github.com/phyelds/phyelds/commit/ba003715ff03b0b0034be480dc37e9660b304837)
+until its release is available on PyPI. State operations return plain Python values.
+
+Install and run an example:
 
 ```bash
 poetry env use 3.13

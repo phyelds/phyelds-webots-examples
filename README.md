@@ -40,7 +40,6 @@ are, and the distance spreads from robot to robot.
 
 You need Webots R2025a, Python 3.12 or 3.13 and [Poetry](https://python-poetry.org/).
 The examples require phyelds 10.0 or newer (below 11.0), installed from PyPI.
-State operations return plain Python values.
 
 Install and run an example:
 
